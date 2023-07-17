@@ -6,7 +6,7 @@ import view.EmployeeView;
 import view.LiveChatView;
 
 
-public class CustomerServiceSystem {
+public class ClientCustomerServiceSystem {
 
 	public static void main(String[] args) {
 		AuthenticationView authenticationView = new AuthenticationView();
