@@ -6,6 +6,7 @@ import models.Complaint;
 public class CustomerView {
     public void displayDashboard() {
         // Display the customer's dashboard
+        
     }
 
     public void displayComplaintCategories() {
