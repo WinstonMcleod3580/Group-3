@@ -1,7 +1,7 @@
 package controllers;
 
 public class Authentication {
-    public boolean loginCustomer(String email, String password) {
+    public boolean loginCustomer(String customerId, String password) {
         return false;
         //authenticate customer
     }
