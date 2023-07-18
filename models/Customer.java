@@ -3,6 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends SystemUser {
+    private String customerId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String contactNumber;
     private List<Complaint> complaints;
 
     public Customer(String customerId, String password) {
