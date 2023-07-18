@@ -10,7 +10,7 @@ public class DBconnector {
 	
 	public static Connection getDatabaseConnection() {
 		if(conn==null) {
-			String url="jdbc:mysql://localhost:3306/practicedb";			
+			String url="jdbc:mysql://localhost:3306/wodda";			
 			try {
 				conn=DriverManager.getConnection(url, "root", "Qwerty12345");
 				if(conn !=null) {
