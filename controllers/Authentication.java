@@ -1,11 +1,17 @@
 package controllers;
+
 import connector.Database;
 import connector.Database.DatabaseConnection;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Authentication {
-    
     private Connection conn;
-     // Constructor
+
+    // Constructor
     public Authentication(Connection conn) {
         this.conn = conn;
     }
@@ -14,12 +20,12 @@ public class Authentication {
         // Get the database connection using DatabaseConnection
         conn = DatabaseConnection.getDatabaseConnection();
     }
-    public boolean loginCustomer(String customerId, String password)
-            {
+
+    public boolean loginCustomer(String customerId, String password) {
         try {
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM customers WHERE customerId = ?")) {
-            statement.setInt(1, customerId);
-             }
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM customers WHERE customerId = ?");
+            statement.setString(1, customerId);
+
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String storedPassword = resultSet.getString("password");
@@ -34,8 +40,8 @@ public class Authentication {
     }
 
     public boolean loginEmployee(String staffId, String password) {
-         try {
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employees WHERE staffId = ?")) {
+        try {
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM employees WHERE staffId = ?");
             statement.setString(1, staffId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
