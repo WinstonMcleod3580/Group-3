@@ -1,6 +1,6 @@
-package client.view;
+package client;
 
-import client.view.LogInDashboard;
+
 
 import javax.swing.*;
 import java.awt.*;
