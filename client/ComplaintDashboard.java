@@ -112,12 +112,7 @@ public class ComplaintDashboard extends JFrame {
         //Action Listener for Submit button
         submitButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {            	
-            	//DatabaseManager dbManager = new DatabaseManager(); 
-            	
-            	//DatabaseManager.java should exist inside server.model, will be used
-            	//to control all SQL queries
-            	
+            public void actionPerformed(ActionEvent e) {            	          	
             	String cusIdNum = cusIdNumField.getText();
                 String firstName = firstNameField.getText();
                 String lastName = lastNameField.getText();
