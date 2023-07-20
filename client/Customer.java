@@ -1,4 +1,4 @@
-package models;
+package client ;
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,6 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
-import Server.MainServer;
 
 
 
@@ -43,7 +42,7 @@ public class Customer implements Serializable {
     
     public Customer() {
     	
-    	 con = MainServer.getDatabaseConnection();
+    	 
     	 JFrame login = new JFrame("Customer Login");
     	 login.setSize(400,400);
     	 JButton logg = new JButton("Login");
@@ -56,8 +55,11 @@ public class Customer implements Serializable {
 	     enterid.setBounds(130,10, 200,30);  
 	     enterpword.setBounds(130,50, 200,30);  
     	 logg.setBounds(30,120,100,30);
+		 JButton newacc = new JButton("NewAccount");
+		 newacc.setBounds(140,120,100,30);
     	 
     	 login.add(cusid);login.add(pword);login.add(enterid);login.add(enterpword);login.add(logg);
+		 login.add(newacc);
     	 
     	 login.setLayout(null);
 	     login.setVisible(true);
