@@ -1,4 +1,6 @@
-package models;
+package client;
+
+
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -18,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import Server.MainServer;
+
  
 public class Employee {
     // frame
@@ -33,8 +35,7 @@ public class Employee {
     Employee()
     {
     	
-    	con = MainServer.getDatabaseConnection();
-    	
+    	    	
     	 JFrame login = new JFrame("Employee Login");
     	 login.setSize(400,400);
     	 JButton logg = new JButton("Login");
@@ -118,7 +119,7 @@ public class Employee {
     
     public void viewall() {
     	 // Frame initialization
-    	con = MainServer.getDatabaseConnection();
+    	//con = MainServer.getDatabaseConnection();
     	
     	String sql ="SELECT * FROM complaint.customer";
     	String sql2 ="SELECT * FROM complaint.complaint";
@@ -170,7 +171,7 @@ public class Employee {
     }
     
    public void complaintresponse() {
-	   con = MainServer.getDatabaseConnection();
+	   //con = MainServer.getDatabaseConnection();
    	
    		String sql ="SELECT * FROM complaint.customer";
    		

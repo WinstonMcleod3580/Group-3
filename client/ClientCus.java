@@ -1,4 +1,4 @@
-package Server;
+package client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -8,14 +8,15 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import models.Customer;
-public class Client {
+
+public class ClientCus {
 
 	private ObjectOutputStream os;
 	private ObjectInputStream is;
 	private Socket connection;
-	private static final Logger logger = LogManager.getLogger(Client.class);
-public Client(){
+	private static final Logger logger = LogManager.getLogger(ClientCus.class);
+	private String action;
+public ClientCus(){
 	   this.createconnection();
 	   this.getStreams();
 	}
@@ -23,7 +24,7 @@ public Client(){
 	private void createconnection() {
 		try{
 			logger.warn("Attempting to setup Client Socket, Errors may occur");				
-			connection = new Socket(InetAddress.getLocalHost(),8888);
+			connection = new Socket("127.0.0.1",8888);
 			logger.info("Socket Successfully Configured");
 		}catch(IOException ex){
 		    logger.error(ex.getMessage());
@@ -52,6 +53,7 @@ public Client(){
 		}
 	}
 	public void sendAction(String action){
+		this.action = action;
 		try {
 			logger.warn("Attempting to send information to Server, Errors may occur");
 			os.writeObject(action);
