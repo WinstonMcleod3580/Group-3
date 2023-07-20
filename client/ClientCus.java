@@ -4,6 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +17,8 @@ public class ClientCus {
 	private Socket connection;
 	private static final Logger logger = LogManager.getLogger(ClientCus.class);
 	private String action;
-public ClientCus(){
+
+	public ClientCus(){
 	   this.createconnection();
 	   this.getStreams();
 	}
@@ -59,29 +62,58 @@ public ClientCus(){
 		    logger.info("CIient Streams Successfully Closed to Server");
 		}
 		catch(IOException ex){
-		   logger.error("Data Hot Sent to Server\n" + ex.getMessage());
+		   logger.error("Data Not Sent to Server\n" + ex.getMessage());
 		}
 	}
 	
 	public void sendCustomer(Customer obj){
 		try{
-		  logger.warn("Attempting to send information to Server, Errors may occur");
+		  
 		  os.writeObject(obj);
-		  logger.info("Data Successfully Sent to Server");
+		  
 		}
 		catch(IOException ex){
-		  logger.error("Data Not Sent to Server\n" + ex.getMessage());
+		  ex.printStackTrace();
 		}
-	  }
+	}
+
+
+	public void sendCustomerId(String id){
+        try{
+            os.writeObject(id);
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+
+
+
+
 	public void receiveResponse(){
-		try {
-			logger.warn("Attempting to receive information from Server, Errors may occur");
-			Boolean flag = (Boolean)is.readObject();
-			logger.info("Data Successfully Received from Server");
-			logger.info("Received: '" + flag + "' from Server");
-		}catch(ClassCastException | ClassNotFoundException | IOException ex){
-		    logger.error(ex.getMessage());
-		}
+		 try{
+            if(action.equalsIgnoreCase("Add Customer")){
+                Boolean flag = (Boolean) is.readObject();
+                if (flag == true){
+                    JOptionPane.showMessageDialog(null,"Record added successfully","Add Record Status",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        
+            if(action.equalsIgnoreCase("Find Customer")){
+                Customer customer = new Customer();
+                customer = (Customer) is.readObject();
+                if (customer == null){
+                    JOptionPane.showMessageDialog(null,"Record could not be found","Find Record Status",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }catch(ClassCastException ex){
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
 	}
 
 

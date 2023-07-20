@@ -23,16 +23,14 @@ public class Customer implements Serializable {
     private String lastName;
     private String email;
     private String contactNumber;
-    private Connection con;
-	ResultSet result = null;
-	Statement stat = null;
+    private String password;
 	private String nature;
 	private String complaint;
 	
 	JFrame frame;
 	JButton lodge, query, chat;
 	
-    public Customer(String customerId, String firstName, String lastName, String email, String contactNumber) {
+    public Customer(String customerId,String pass, String firstName, String lastName, String email, String contactNumber) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -388,30 +386,9 @@ public class Customer implements Serializable {
 		this.contactNumber = contactNumber;
 	}
 
-	public Connection getCon() {
-		return this.con;
-	}
+	
 
-	public void setCon(Connection con) {
-		this.con = con;
-	}
-
-	public ResultSet getResult() {
-		return this.result;
-	}
-
-	public void setResult(ResultSet result) {
-		this.result = result;
-	}
-
-	public Statement getStat() {
-		return this.stat;
-	}
-
-	public void setStat(Statement stat) {
-		this.stat = stat;
-	}
-
+	
 	public String getNature() {
 		return this.nature;
 	}
@@ -428,37 +405,17 @@ public class Customer implements Serializable {
 		this.complaint = complaint;
 	}
 
-	public JFrame getFrame() {
-		return this.frame;
+	
+
+
+	public String getPassword() {
+		return this.password;
 	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public JButton getLodge() {
-		return this.lodge;
-	}
-
-	public void setLodge(JButton lodge) {
-		this.lodge = lodge;
-	}
-
-	public JButton getQuery() {
-		return this.query;
-	}
-
-	public void setQuery(JButton query) {
-		this.query = query;
-	}
-
-	public JButton getChat() {
-		return this.chat;
-	}
-
-	public void setChat(JButton chat) {
-		this.chat = chat;
-	}
 
 
 }
