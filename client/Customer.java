@@ -95,7 +95,7 @@ public class Customer implements Serializable {
 		frame1.add(back);
 		frame1.setLayout(null);
 		frame1.setVisible(true);
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		lodge.addActionListener(new ActionListener() {
 			@Override
@@ -107,7 +107,10 @@ public class Customer implements Serializable {
 		
 	}	
 				
-		
+	
+	private void LoginWin(){
+
+	}
 	
     
 
