@@ -1,11 +1,11 @@
 package controllers;
 
 import models.Complaint;
+import view.CustomerView;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import client.CustomerView;
 
 public class CusController {
     

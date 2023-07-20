@@ -1,6 +1,8 @@
 package client;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     private String customerId;
     private String firstName;
     private String lastName;
@@ -18,6 +20,16 @@ public class Customer {
         this.contactNumber = contactNumber;
         this.nature = "";
         this.complaint = "";
+
+    }
+    public Customer(Customer c) {
+        this.customerId = c.customerId;
+        this.firstName = c.firstName;
+        this.lastName = c.lastName;
+        this.email = c.email;
+        this.contactNumber = c.contactNumber;
+        this.nature = c.nature;
+        this.complaint = c.complaint;
 
     }
 
@@ -85,6 +97,13 @@ public class Customer {
     public void setComplaint(String complaint) {
         this.complaint = complaint;
     }
+
+
+    public Customer() {
+    }
+
+
+
 
 
 
