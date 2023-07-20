@@ -56,7 +56,7 @@ public class Customer implements Serializable {
 	     enterpword.setBounds(130,50, 200,30);  
     	 logg.setBounds(30,120,100,30);
 		 JButton newacc = new JButton("NewAccount");
-		 newacc.setBounds(140,120,100,30);
+		 newacc.setBounds(140,120,120,30);
     	 
     	 login.add(cusid);login.add(pword);login.add(enterid);login.add(enterpword);login.add(logg);
 		 login.add(newacc);
