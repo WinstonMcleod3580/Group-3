@@ -1,6 +1,5 @@
 package client;
 
-import com.mysql.cj.xdevapi.Client;
 
 public class ClientDriver {
 

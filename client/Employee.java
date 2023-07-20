@@ -136,7 +136,7 @@ public class Employee {
         String[] columnNames = { "ID", "First Name", "Last Name" , "Email", "Contact Number", "Nature","Complaint" };
         // Data to be displayed in the JTable
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        Customer c = new Customer();
+        CustomerView c = new CustomerView();
 		try {
     		stat = con.createStatement();
     		result = stat.executeQuery(sql);

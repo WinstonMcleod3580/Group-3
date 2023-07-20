@@ -25,7 +25,7 @@ public class ClientCus {
 
 	private void createconnection() {
 		try{
-			logger.warn("Attempting to setup Client Socket, Errors may occur");				
+							
 			connection = new Socket("127.0.0.1",8888);
 			logger.info("Socket Successfully Configured");
 		}catch(IOException ex){
@@ -66,10 +66,10 @@ public class ClientCus {
 		}
 	}
 	
-	public void sendCustomer(Customer obj){
+	public void sendCustomer(Customer cus){
 		try{
 		  
-		  os.writeObject(obj);
+		  os.writeObject(cus);
 		  
 		}
 		catch(IOException ex){
@@ -100,8 +100,8 @@ public class ClientCus {
             }
         
             if(action.equalsIgnoreCase("Find Customer")){
-                Customer customer = new Customer();
-                customer = (Customer) is.readObject();
+                CustomerView customer = new CustomerView();
+                customer = (CustomerView) is.readObject();
                 if (customer == null){
                     JOptionPane.showMessageDialog(null,"Record could not be found","Find Record Status",JOptionPane.ERROR_MESSAGE);
                     return;

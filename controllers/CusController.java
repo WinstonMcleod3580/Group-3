@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import client.Customer;
+import client.CustomerView;
 
 public class CusController {
     
