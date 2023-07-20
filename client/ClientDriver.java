@@ -10,5 +10,8 @@ public class ClientDriver {
 
         client.sendAction("Add Customer");
         System.out.println("Message Sent to server");
+        client.sendCustomer(cus);
+        client.receiveResponse();
+        System.out.println("Response received from server");
     }
 }
