@@ -6,18 +6,16 @@ import java.util.List;
 import models.Complaint;
 import models.Service;
 import models.Technician;
-import connector.Database;
-import connector.Database.DatabaseConnection;
 
 public class EmpController {
-    private Connection conn;
+    /*
 
     public EmpController(Connection conn) {
         this.conn = conn;
     }
     public EmpController() {
         // Get the database connection using DatabaseConnection
-        conn = DatabaseConnection.getDatabaseConnection();
+        
     }
 
     public List<Service> getServices() {
@@ -150,4 +148,6 @@ public class EmpController {
 
         return null;
     }
+
+    */
 }

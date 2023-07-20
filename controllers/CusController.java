@@ -1,22 +1,21 @@
 package controllers;
 
 import models.Complaint;
-import models.Customer;
-import connector.Database;
-import connector.Database.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CusController {
-    private Connection conn;
+import client.Customer;
 
-    public CusController(Connection conn) {
-        this.conn = conn;
+public class CusController {
+    
+    /*
+    public CusController() {
+       
     }
      public CusController() {
         // Get the database connection using DatabaseConnection
-        conn = DatabaseConnection.getDatabaseConnection();
+        
     }
     public void lodgeComplaint(Customer customer, String category, String details) {
         try (PreparedStatement statement = conn.prepareStatement(
@@ -29,10 +28,10 @@ public class CusController {
             e.printStackTrace();
         }
     }
-
+    
     public List<Complaint> getPastComplaints(Customer customer) {
         List<Complaint> pastComplaints = new ArrayList<>();
-
+        
         try (PreparedStatement statement = conn.prepareStatement(
                 "SELECT * FROM complaints WHERE customer_id = ?")) {
             statement.setInt(1, customer.getCustomerId());
@@ -52,6 +51,7 @@ public class CusController {
 
         return pastComplaints;
     }
+    
 
     public Complaint getComplaint(Customer customer, int complaintId) {
         try (PreparedStatement statement = conn.prepareStatement(
@@ -72,4 +72,6 @@ public class CusController {
 
         return null;
     }
+
+    */
 }
