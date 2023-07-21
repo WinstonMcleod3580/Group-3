@@ -131,8 +131,4 @@ public class Livechat extends JFrame implements ActionListener{
 	public static void main(String[] args) {
 		new Livechat();
 	}
-	
-	public interface ActionListener extends EventListener {
-		public void actionPerformed(ActionEvent e);
-	}
 }
