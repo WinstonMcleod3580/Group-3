@@ -55,31 +55,31 @@ public class RepresentativeDashboard extends JFrame {
         Vector<String> complaintData1 = new Vector<>();
         complaintData1.add("C001");
         complaintData1.add("Mikhail Webb");
-        complaintData1.add("Broadband issue: Slow internet");
+        complaintData1.add("Low: Broadband issue: Slow internet");
         complaintData1.add("2023-07-25");
 
         Vector<String> complaintData2 = new Vector<>();
         complaintData2.add("C002");
         complaintData2.add("Daniel Eccleston");
-        complaintData2.add("Cable TV issue: No signal error");
+        complaintData2.add("Medium: Cable TV issue: No signal error");
         complaintData2.add("2023-07-27");
         
         Vector<String> complaintData3 = new Vector<>();
         complaintData3.add("C003");
         complaintData3.add("Winston Mcleod");
-        complaintData3.add("Login Issues: No access error");
+        complaintData3.add("Medium :Login Issues: No access error");
         complaintData3.add("2023-08-12");
         
         Vector<String> complaintData4 = new Vector<>();
         complaintData4.add("C004");
         complaintData4.add("Andre Grant");
-        complaintData4.add("Installation issue: Input not found error");
+        complaintData4.add("Medium: Installation issue: Input not found error");
         complaintData4.add("2023-10-27");
         
         Vector<String> complaintData5 = new Vector<>();
         complaintData5.add("C005");
         complaintData5.add("Abbygaye Stweart");
-        complaintData5.add("Connectivity issues: No internet");
+        complaintData5.add("Low: Connectivity issues: No internet");
         complaintData5.add("2023-09-24");
 
         complaintsTableModel = new DefaultTableModel();
@@ -141,7 +141,7 @@ public class RepresentativeDashboard extends JFrame {
         for (int row = 0; row < complaintsTableModel.getRowCount(); row++) {
             sb.append("Customer ID: ").append(complaintsTableModel.getValueAt(row, 0)).append("\n");
             sb.append("Name: ").append(complaintsTableModel.getValueAt(row, 1)).append("\n");
-            sb.append("Issue: ").append(complaintsTableModel.getValueAt(row, 2)).append("\n");
+            sb.append("Category:Type:Nature: ").append(complaintsTableModel.getValueAt(row, 2)).append("\n");
             sb.append("Date: ").append(complaintsTableModel.getValueAt(row, 3)).append("\n");
             sb.append("--------------------------------------------------\n");
         }
