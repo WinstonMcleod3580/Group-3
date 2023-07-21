@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class RepresentativeGUI extends JFrame {
+public class RepresentativeDashboard extends JFrame {
     private JButton viewServicesButton, viewComplaintsButton;
     private DefaultTableModel serviceTableModel, complaintsTableModel;
 
@@ -150,8 +150,10 @@ public class RepresentativeGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            RepresentativeGUI dashboard = new Representativedashboard();
+            RepresentativeDashboard gui = new RepresentativeDashboard();
             gui.setVisible(true);
         });
     }
 }
+
+
