@@ -1,165 +1,122 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Vector;
 
 public class RepresentativeGUI extends JFrame {
-    private JTextArea complaintsArea;
-    private JComboBox<String> servicesComboBox;
-    private JButton viewComplaintsButton;
-    private JComboBox<String> techniciansComboBox;
-    private JButton assignButton;
-    private Map<String, List<String>> serviceComplaintsMap;
-
-    private JPanel customerDetailsPanel;
-    private JLabel customerIdLabel;
-    private JLabel nameLabel;
-    private JLabel emailLabel;
-    private JLabel contactLabel;
-    private JLabel typeLabel;
-    private JTextArea detailsArea;
+    private JLabel titleLabel, serviceLabel, resolvedLabel, outstandingLabel;
+    private JTable serviceTable, complaintsTable;
+    private DefaultTableModel serviceTableModel, complaintsTableModel;
+    private JScrollPane serviceScrollPane, complaintsScrollPane;
 
     public RepresentativeGUI() {
-        serviceComplaintsMap = new HashMap<>();
-        initializeData();
+        super("Customer Service Representative Dashboard");
+        initUI();
+        addComponents();
+    }
 
-        setTitle("Representative Dashboard");
-        setSize(600, 400);
+    private void initUI() {
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(null);
 
-        JPanel dashboardPanel = new JPanel();
-        dashboardPanel.setLayout(new FlowLayout());
+        titleLabel = new JLabel("Customer Service Representative", SwingConstants.CENTER);
+        titleLabel.setBounds(20, 20, 740, 30);
 
-        JLabel servicesLabel = new JLabel("Select a service:");
-        servicesComboBox = new JComboBox<>(serviceComplaintsMap.keySet().toArray(new String[0]));
-        viewComplaintsButton = new JButton("View Complaints");
-        complaintsArea = new JTextArea(10, 40);
-        complaintsArea.setEditable(false);
+        serviceLabel = new JLabel("Services", SwingConstants.LEFT);
+        serviceLabel.setBounds(20, 70, 100, 30);
 
-        viewComplaintsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedService = (String) servicesComboBox.getSelectedItem();
-                showComplaints(selectedService);
-                clearCustomerDetails();
-            }
-        });
+        resolvedLabel = new JLabel("Resolved Complaints", SwingConstants.CENTER);
+        resolvedLabel.setBounds(20, 110, 200, 30);
 
-        dashboardPanel.add(servicesLabel);
-        dashboardPanel.add(servicesComboBox);
-        dashboardPanel.add(viewComplaintsButton);
-        dashboardPanel.add(new JScrollPane(complaintsArea));
+        outstandingLabel = new JLabel("Outstanding Complaints", SwingConstants.CENTER);
+        outstandingLabel.setBounds(230, 110, 200, 30);
 
-        JPanel technicianPanel = new JPanel();
-        technicianPanel.setLayout(new FlowLayout());
+        serviceTableModel = new DefaultTableModel();
+        serviceTableModel.addColumn("Service");
+        serviceTableModel.addColumn("Resolved");
+        serviceTableModel.addColumn("Outstanding");
 
-        JLabel techniciansLabel = new JLabel("Assign to Technician:");
-        techniciansComboBox = new JComboBox<>(new String[]{"Bob Builder", "Jerry Fixit", "Cory Solvit"});
-        assignButton = new JButton("Assign Complaint");
-        assignButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedService = (String) servicesComboBox.getSelectedItem();
-                String selectedTechnician = (String) techniciansComboBox.getSelectedItem();
-                assignComplaint(selectedService, selectedTechnician);
-                showComplaints(selectedService);
-            }
-        });
+        // Placeholder data for services, resolved, and outstanding complaints
+        Vector<String> serviceData1 = new Vector<>();
+        serviceData1.add("Broadband");
+        serviceData1.add("10");
+        serviceData1.add("5");
 
-        technicianPanel.add(techniciansLabel);
-        technicianPanel.add(techniciansComboBox);
-        technicianPanel.add(assignButton);
+        Vector<String> serviceData2 = new Vector<>();
+        serviceData2.add("Cable TV");
+        serviceData2.add("5");
+        serviceData2.add("3");
 
-        customerDetailsPanel = new JPanel();
-        customerDetailsPanel.setLayout(new BoxLayout(customerDetailsPanel, BoxLayout.Y_AXIS));
-        customerIdLabel = new JLabel();
-        nameLabel = new JLabel();
-        emailLabel = new JLabel();
-        contactLabel = new JLabel();
-        typeLabel = new JLabel();
-        detailsArea = new JTextArea(5, 30);
-        detailsArea.setEditable(false);
+        serviceTableModel.addRow(serviceData1);
+        serviceTableModel.addRow(serviceData2);
 
-        customerDetailsPanel.add(customerIdLabel);
-        customerDetailsPanel.add(nameLabel);
-        customerDetailsPanel.add(emailLabel);
-        customerDetailsPanel.add(contactLabel);
-        customerDetailsPanel.add(typeLabel);
-        customerDetailsPanel.add(new JScrollPane(detailsArea));
+        serviceTable = new JTable(serviceTableModel);
+        serviceScrollPane = new JScrollPane(serviceTable);
+        serviceScrollPane.setBounds(20, 150, 200, 100);
 
-        add(dashboardPanel, BorderLayout.NORTH);
-        add(technicianPanel, BorderLayout.SOUTH);
-        add(new JScrollPane(customerDetailsPanel), BorderLayout.CENTER);
+        complaintsTableModel = new DefaultTableModel();
+        complaintsTableModel.addColumn("Customer ID");
+        complaintsTableModel.addColumn("Name");
+        complaintsTableModel.addColumn("Issue");
 
-        setLocationRelativeTo(null);
-        setVisible(true);
+        // Placeholder data for customer complaints
+        Vector<String> complaintData1 = new Vector<>();
+        complaintData1.add("C001");
+        complaintData1.add("Mikhail Webb");
+        complaintData1.add("Broadband issue: Slow internet");
+        complaintData1.add("2023-07-25");
+
+        Vector<String> complaintData2 = new Vector<>();
+        complaintData2.add("C002");
+        complaintData2.add("Daniel Eccleston");
+        complaintData2.add("Cable TV issue: No signal error");
+        complaintData2.add("2023-07-27");
+        
+        Vector<String> complaintData3 = new Vector<>();
+        complaintData3.add("C003");
+        complaintData3.add("Winston Mcleod");
+        complaintData3.add("Login Issues: No access error");
+        complaintData3.add("2023-08-12");
+        
+        Vector<String> complaintData4 = new Vector<>();
+        complaintData4.add("C004");
+        complaintData4.add("Andre Grant");
+        complaintData4.add("Installation issue: Input not found error");
+        complaintData4.add("2023-10-27");
+        
+        Vector<String> complaintData5 = new Vector<>();
+        complaintData5.add("C005");
+        complaintData5.add("Abbygaye Stweart");
+        complaintData5.add("Connectivity issues: No internet");
+        complaintData5.add("2023-09-24");
+
+        complaintsTableModel.addRow(complaintData1);
+        complaintsTableModel.addRow(complaintData2);
+        complaintsTableModel.addRow(complaintData3);
+        complaintsTableModel.addRow(complaintData4);
+        complaintsTableModel.addRow(complaintData5);
+
+        complaintsTable = new JTable(complaintsTableModel);
+        complaintsScrollPane = new JScrollPane(complaintsTable);
+        complaintsScrollPane.setBounds(20, 280, 500, 200);
     }
 
-    private void initializeData() {
-        // data for representation purpose and should be replace with data from our wodda database
-        List<String> internetcomplaints = new ArrayList<>();
-        internetcomplaints.add("Complaint 1: Slow internet speed");
-        internetcomplaints.add("Complaint 2: Connection drops frequently");
-
-        List<String> setupComplaints = new ArrayList<>();
-        setupComplaints.add("Complaint 3: Requesting new Installation Service");
-        setupComplaints.add("Complaint 4: Requesting new setup Service");
-
-        List<String> loginComplaints = new ArrayList<>();
-        loginComplaints.add("Complaint 5: No access error");
-        loginComplaints.add("Complaint 6: Invalid credentials");
-
-        serviceComplaintsMap.put("Internet Speed Issues", internetcomplaints);
-        serviceComplaintsMap.put("Installation and Setup Problems", setupComplaints);
-        serviceComplaintsMap.put("Login Difficulties", loginComplaints);
-    }
-
-    private void showComplaints(String service) {
-        List<String> complaints = serviceComplaintsMap.get(service);
-        StringBuilder complaintsText = new StringBuilder();
-        if (complaints != null) {
-            for (String complaint : complaints) {
-                complaintsText.append(complaint).append("\n");
-            }
-        } else {
-            complaintsText.append("No complaints for this service.");
-        }
-        complaintsArea.setText(complaintsText.toString());
-    }
-
-    private void assignComplaint(String service, String technician) {
-        List<String> complaints = serviceComplaintsMap.get(service);
-        if (complaints != null) {
-            String newComplaint = "Complaint " + (complaints.size() + 1) + ": Assigned to " + technician;
-            complaints.add(newComplaint);
-            serviceComplaintsMap.put(service, complaints);
-        }
-    }
-
-    private void clearCustomerDetails() {
-        customerIdLabel.setText("");
-        nameLabel.setText("");
-        emailLabel.setText("");
-        contactLabel.setText("");
-        typeLabel.setText("");
-        detailsArea.setText("");
+    private void addComponents() {
+        add(titleLabel);
+        add(serviceLabel);
+        add(resolvedLabel);
+        add(outstandingLabel);
+        add(serviceScrollPane);
+        add(complaintsScrollPane);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new RepresentativeGUI();
-            }
+        SwingUtilities.invokeLater(() -> {
+        	RepresentativeGUI gui = new RepresentativeGUI();
+            gui.setVisible(true);
         });
     }
 }
-
-
