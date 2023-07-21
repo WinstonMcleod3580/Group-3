@@ -138,13 +138,16 @@ public class ClientCus {
                 }
             }
         }catch(ClassCastException ex){
+	    logger.error("ClassCastException occurred: " + ex.getMessage());
             ex.printStackTrace();
         }catch(ClassNotFoundException ex){
+	    logger.error("ClassNotFoundException occurred: " + ex.getMessage());
             ex.printStackTrace();
         }catch(IOException ex){
+	    logger.error("IOException occurred: " + ex.getMessage());
             ex.printStackTrace();
         }
-	}
+	}//end receiveResponse
 
 
-}
+}//end ClientCus class
