@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 public class LogInDashboard extends JFrame {
 	private static final long serialVersionUID = 1L;
+    Customer cus = null;
 
 
     private void NewAccWin(){
@@ -78,11 +79,12 @@ public class LogInDashboard extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
                 ClientCus client = new ClientCus();
-				Customer cus = new Customer(idtext.getText(),passtext.getText(),fntext.getText(),lntext.getText(),etext.getText(),contacttext.getText());
+				cus = new Customer(idtext.getText(),passtext.getText(),fntext.getText(),lntext.getText(),etext.getText(),contacttext.getText());
                 client.sendAction("Add Customer");
                 System.out.println("Message Sent to server");
                 client.sendCustomer(cus);
                 client.receiveResponse();
+                System.out.println("Response received from server");
                
 					
 
@@ -171,17 +173,20 @@ public class LogInDashboard extends JFrame {
 
                 ClientCus client = new ClientCus();
                 client.sendAction("Find Customer");
-                client.sendCustomerId(password);
+                client.sendCustomerId(idNumber);
                 client.receiveResponse();
+                cus = client.getCustomer();
+
+
                 
-                System.out.println("idNumber is " + idNumber + "\nPassword is " + password);
+                //System.out.println("idNumber is " + idNumber + "\nPassword is " + password);
 
                 //WILL NEED TO CHANGE to send the information to the server and get password instead 
 
 
                 boolean authenticated = authenticate(idNumber, password);
 
-                if (authenticated) {
+                if (cus.getCustomerId() == idNumber && cus.getPassword() == password) {
                     new CustomerDashboard().setVisible(true);
                     dispose();
                 } else {

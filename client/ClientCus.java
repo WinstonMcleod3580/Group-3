@@ -20,6 +20,8 @@ public class ClientCus {
 	private static final Logger logger = LogManager.getLogger(ClientCus.class);
 	private String action;
 
+	private Customer cus;
+
 	public ClientCus(){
 	   this.createconnection();
 	   this.getStreams();
@@ -79,6 +81,8 @@ public class ClientCus {
 		}
 	}
 
+	
+
 
 	public void sendCustomerId(String id){
         try{
@@ -88,12 +92,26 @@ public class ClientCus {
         }
     }
 
+	public void sendCredentials(String id,String pass){
+		try{
+			os.writeObject(id);
+			os.writeObject(pass);
+		}catch(IOException ex){
+            ex.printStackTrace();
+        }
+	}
+
+
+	public Customer getCustomer(){
+		return cus;
+	}
 
 
 
-
-	public void receiveResponse(){
+		public void receiveResponse(){
 		 try{
+
+
             if(action.equalsIgnoreCase("Add Customer")){
                 Boolean flag = (Boolean) is.readObject();
                 if (flag == true){
@@ -102,14 +120,21 @@ public class ClientCus {
             }
         
             if(action.equalsIgnoreCase("Find Customer")){
-                Customer customer = new Customer();
-                customer = (Customer) is.readObject();
-                if (customer == null){
+                Customer cus = new Customer();
+                cus = (Customer) is.readObject();
+                if (cus == null){
                     JOptionPane.showMessageDialog(null,"Record could not be found","Find Record Status",JOptionPane.ERROR_MESSAGE);
                     
                 }else{
                     JOptionPane.showMessageDialog(null,"Record  found","Find Record Status",JOptionPane.INFORMATION_MESSAGE);
-					System.out.println(customer.getFirstName());
+					System.out.println(cus.getFirstName());
+                }
+
+			}
+			if(action.equalsIgnoreCase("Delete Customer")){
+                Boolean flag = (Boolean) is.readObject();
+                if (flag == true){
+                    JOptionPane.showMessageDialog(null,"Record deleted successfully","Add Record Status",JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }catch(ClassCastException ex){

@@ -1,11 +1,12 @@
 package client;
 
+import view.CustomerDashboard;
 import view.LogInDashboard;
 
 public class ClientDriver {
 
     public static void main(String[] args){
-
+        //new CustomerDashboard();
         new LogInDashboard();
         //ClientCus client = new ClientCus();
         /*Customer cus = new Customer("4633","water","Will", "lui", "lh@gmail.com", "182231");
