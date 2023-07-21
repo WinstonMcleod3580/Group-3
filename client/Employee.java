@@ -17,7 +17,7 @@ public class Employee implements Serializable {
 
 
 
-    public Employee(String staffId,String username,String password,String firstName,String lastName,String email,String contactNumber, String role) {
+    public Employee(String staffId,String password,String firstName,String lastName,String email,String contactNumber, String role) {
         this.staffId=staffId;
         this.password=password;
         this.firstName=firstName;
