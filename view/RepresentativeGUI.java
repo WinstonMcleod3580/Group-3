@@ -156,7 +156,7 @@ public class RepresentativeGUI extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Representative();
+                new RepresentativeGUI();
             }
         });
     }
