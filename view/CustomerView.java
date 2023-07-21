@@ -17,12 +17,47 @@ import javax.swing.*;
 
 
 
-public class CustomerView implements Serializable {
+public class CustomerView  {
     
 	JFrame frame;
 	JButton lodge, query, chat;
 	
-    
+    private void Complaint(){
+		//save(t.getText(),t1.getText(), t2.getText(), t3.getText(), t4.getText());
+		//setCustomerId(t.getText());
+		//setFirstName(t1.getText());
+		//setLastName(t2.getText());
+		//setEmail(t3.getText());
+		//setContactNumber(t4.getText());
+			
+		JLabel issue =new JLabel ("Type:");
+		issue .setBounds(10,10, 100,30); 
+		String type[]={"","Query", "Request"};        
+		JComboBox complaint = new JComboBox(type);
+		complaint.setBounds(110,10, 200,30);
+			
+		JLabel complaintarea =new JLabel ("Query/Request:");
+		complaintarea .setBounds(10,50, 100,30); 
+		JTextArea area=new JTextArea();  
+		area.setBounds(110,50,350,300);  
+		
+		JButton proceed;
+		proceed = new JButton("Proceed");
+		proceed.setBounds(10,360,140,60);
+			
+			
+		JFrame frame2 = new JFrame("Lodge Complaint");
+		frame2.setSize(500,500);
+			
+		frame2.add(issue);frame2.add(complaint);frame2.add(complaintarea);frame2.add(area);
+		frame2.add(proceed); 
+			
+		frame2.setLayout(null);
+		frame2.setVisible(true);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame1.setVisible(false);
+							          	        	        
+	}
 	private void NewAccWin(){
 
 		JFrame frame1 = new JFrame("Lodge Complaint");
@@ -30,7 +65,7 @@ public class CustomerView implements Serializable {
 		JButton enter = new JButton("Enter");
 		
 		JButton back;
-		back = new JButton("Back");
+		back = new JButton("Enter");
 		
 		JLabel l,l1,l2,l3,l4;
 		JTextArea area;
@@ -95,6 +130,26 @@ public class CustomerView implements Serializable {
 
 	}
 	
+	private void CusWin(){
+		frame = new JFrame("Customer");
+		frame.setSize(400,400);
+		lodge = new JButton("Lodge Complaint");
+		query = new JButton("Make a Query");
+		chat = new JButton("Live Chat");
+		
+		lodge.setBounds(130,50,150,60);
+		query.setBounds(130,150,150,60);
+		chat.setBounds(130,250,150,60);
+		
+		frame.add(lodge);frame.add(query);
+		frame.add(chat);
+		
+		frame.setLayout(null);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	}
     
 
 
@@ -136,22 +191,6 @@ public class CustomerView implements Serializable {
               public void actionPerformed(ActionEvent e) {
             	  
             		
-					frame = new JFrame("Customer");
-					frame.setSize(400,400);
-					lodge = new JButton("Lodge Complaint");
-					query = new JButton("Make a Query");
-					chat = new JButton("Live Chat");
-					
-					lodge.setBounds(130,50,150,60);
-					query.setBounds(130,150,150,60);
-					chat.setBounds(130,250,150,60);
-					
-					frame.add(lodge);frame.add(query);
-					frame.add(chat);
-					
-					frame.setLayout(null);
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					
 					lodge.addActionListener(new ActionListener() {
 						@Override
@@ -258,67 +297,15 @@ public class CustomerView implements Serializable {
 							          	        frame1.setVisible(true);
 							          	        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 							          	       
-							          	        lodge.addActionListener(new ActionListener() {
-							          	            @Override
-							          	            public void actionPerformed(ActionEvent e) {
-							          	            	
-							          	               		//save(t.getText(),t1.getText(), t2.getText(), t3.getText(), t4.getText());
-							          	               		setCustomerId(t.getText());
-							          	               		setFirstName(t1.getText());
-							          	               		setLastName(t2.getText());
-							          	               		setEmail(t3.getText());
-							          	               		setContactNumber(t4.getText());
-							          	               		
-							          	               		JLabel issue =new JLabel ("Type:");
-							          	        	        issue .setBounds(10,10, 100,30); 
-							          	               	  	String type[]={"","Query", "Request"};        
-							          	               	  	JComboBox complaint = new JComboBox(type);
-							          	               	  	complaint.setBounds(110,10, 200,30);
-							          	               	  	
-							          	               	  	JLabel complaintarea =new JLabel ("Query/Request:");
-							          	               	  	complaintarea .setBounds(10,50, 100,30); 
-							          	               	  	JTextArea area=new JTextArea();  
-							          	               	  	area.setBounds(110,50,350,300);  
-							          	               	  	
-							          	               	  	JButton proceed;
-							          	               		proceed = new JButton("Proceed");
-							          	               		proceed.setBounds(10,360,140,60);
-							          	               		
-							          	               		
-							          	               		JFrame frame2 = new JFrame("Lodge Complaint");
-							          	               		frame2.setSize(500,500);
-							          	               		
-							         	               		frame2.add(issue);frame2.add(complaint);frame2.add(complaintarea);frame2.add(area);
-							          	               		frame2.add(proceed); 
-							          	               		
-							          	               		frame2.setLayout(null);
-							          	        	        frame2.setVisible(true);
-							          	        	        frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-							          	        	        frame1.setVisible(false);
-							          	        	        
-							          	        	        proceed.addActionListener(new ActionListener() {
-							                      	            @Override
-							                      	            public void actionPerformed(ActionEvent e) {
-							                      	               		
-							                      	            	int selected = complaint.getSelectedIndex();
-							                      	            	setNature(type[selected]);
-							                    	            	setComplaint(area.getText());
-							                      	            //	savecomplaint(type[selected], area.getText());
-							                      	            	JOptionPane.showMessageDialog(frame, "Query/Request made Successfully","Action Demo", JOptionPane.INFORMATION_MESSAGE);
-							                     	    	         	frame2.setVisible(false);
-							                      	            	 }	                      	                         
-							                      	        });
-							          	            	 }	         
-							          	         
-							          	        });
-							          	     
-							          	       
+							          	        						          	               	                   	               		
+							            	    
+							                      	       
 							              	 }	   
 							                       
 							          });
 					}
-							          
-							        
+				          
+       
 						        
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -327,80 +314,16 @@ public class CustomerView implements Serializable {
 		
 	}
 
-
-
-
-
-	public String getCustomerId() {
-		return this.customerId;
-	}
-
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getContactNumber() {
-		return this.contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-	
-
-	
-	public String getNature() {
-		return this.nature;
-	}
-
-	public void setNature(String nature) {
-		this.nature = nature;
-	}
-
-	public String getComplaint() {
-		return this.complaint;
-	}
-
-	public void setComplaint(String complaint) {
-		this.complaint = complaint;
-	}
-
-	
-
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-
 }
+
+
+
+
+
+	
+
+
+	
+
+
+

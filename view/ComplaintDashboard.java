@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import client.model.Customer;
+import client.Customer;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
