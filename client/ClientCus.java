@@ -102,11 +102,14 @@ public class ClientCus {
             }
         
             if(action.equalsIgnoreCase("Find Customer")){
-                CustomerView customer = new CustomerView();
-                customer = (CustomerView) is.readObject();
+                Customer customer = new Customer();
+                customer = (Customer) is.readObject();
                 if (customer == null){
                     JOptionPane.showMessageDialog(null,"Record could not be found","Find Record Status",JOptionPane.ERROR_MESSAGE);
-                    return;
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null,"Record  found","Find Record Status",JOptionPane.INFORMATION_MESSAGE);
+					System.out.println(customer.getFirstName());
                 }
             }
         }catch(ClassCastException ex){

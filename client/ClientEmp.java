@@ -72,7 +72,13 @@ public class ClientEmp {
 		}
 	}
 
-
+    public void sendEmployeeId(String id){
+        try{
+            os.writeObject(id);
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
 
     public void receiveResponse(){
 		 try{
@@ -84,11 +90,14 @@ public class ClientEmp {
             }
         
             if(action.equalsIgnoreCase("Find Employee")){
-                CustomerView customer = new CustomerView();
-                customer = (CustomerView) is.readObject();
-                if (customer == null){
+                Employee emp = new Employee();
+                emp = (Employee) is.readObject();
+                if (emp == null){
                     JOptionPane.showMessageDialog(null,"Record could not be found","Find Record Status",JOptionPane.ERROR_MESSAGE);
-                    return;
+                    
+                }else{
+                    JOptionPane.showMessageDialog(null,"Record  found","Find Record Status",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println(emp.getFirstName());
                 }
             }
         }catch(ClassCastException ex){
