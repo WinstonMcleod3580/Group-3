@@ -7,8 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import model.Livechat;
+
 public class RepresentativeDashboard extends JFrame {
-    private JButton viewServicesButton, viewComplaintsButton;
+    private JButton viewServicesButton, viewComplaintsButton, liveChatButton;
     private DefaultTableModel serviceTableModel, complaintsTableModel;
 
     public RepresentativeDashboard() {
@@ -116,9 +118,21 @@ public class RepresentativeDashboard extends JFrame {
                 JOptionPane.showMessageDialog(null, complaintsInfo, "Customer Complaints", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        
+        liveChatButton = new JButton("Live Chat");
+        liveChatButton.setBackground(Color.CYAN); // Set background color to sky blue
+        liveChatButton.setPreferredSize(new Dimension(350, 50)); // Resize button
+        liveChatButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Handle the action when Live Chat button is clicked
+            	 Livechat liveChat = new Livechat(); // Create an instance of the LiveChat class
+            	
+            }
+        });
 
         add(viewServicesButton);
         add(viewComplaintsButton);
+        add(liveChatButton);
     }
 
     private String getServiceInformation() {
@@ -148,6 +162,7 @@ public class RepresentativeDashboard extends JFrame {
         return sb.toString();
     }
 
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             RepresentativeDashboard gui = new RepresentativeDashboard();
