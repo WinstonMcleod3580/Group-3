@@ -103,7 +103,7 @@ public class RepresentativeGUI extends JFrame {
     }
 
     private void initializeData() {
-        // Replace with data from our wodda database
+        // data for representation purpose and should be replace with data from our wodda database
         List<String> internetcomplaints = new ArrayList<>();
         internetcomplaints.add("Complaint 1: Slow internet speed");
         internetcomplaints.add("Complaint 2: Connection drops frequently");
