@@ -11,7 +11,7 @@ public class RepresentativeGUI extends JFrame {
     private JButton viewServicesButton, viewComplaintsButton;
     private DefaultTableModel serviceTableModel, complaintsTableModel;
 
-    public RepresentativeGUI() {
+    public RepresentativeDashboard() {
         super("Customer Service Representative Dashboard");
         initUI();
         addComponents();
@@ -150,7 +150,7 @@ public class RepresentativeGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            RepresentativeGUI gui = new RepresentativeGUI();
+            RepresentativeGUI dashboard = new Representativedashboard();
             gui.setVisible(true);
         });
     }
