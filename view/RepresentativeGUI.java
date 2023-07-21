@@ -3,13 +3,13 @@ package view;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class RepresentativeGUI extends JFrame {
-    private JLabel titleLabel, serviceLabel, resolvedLabel, outstandingLabel;
-    private JTable serviceTable, complaintsTable;
+    private JButton viewServicesButton, viewComplaintsButton;
     private DefaultTableModel serviceTableModel, complaintsTableModel;
-    private JScrollPane serviceScrollPane, complaintsScrollPane;
 
     public RepresentativeGUI() {
         super("Customer Service Representative Dashboard");
@@ -18,26 +18,10 @@ public class RepresentativeGUI extends JFrame {
     }
 
     private void initUI() {
-        setSize(800, 600);
+        setSize(800, 500); // Resize window to be 2.5 times bigger
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-
-        titleLabel = new JLabel("Customer Service Representative", SwingConstants.CENTER);
-        titleLabel.setBounds(20, 20, 740, 30);
-
-        serviceLabel = new JLabel("Services", SwingConstants.LEFT);
-        serviceLabel.setBounds(20, 70, 100, 30);
-
-        resolvedLabel = new JLabel("Resolved Complaints", SwingConstants.CENTER);
-        resolvedLabel.setBounds(20, 110, 200, 30);
-
-        outstandingLabel = new JLabel("Outstanding Complaints", SwingConstants.CENTER);
-        outstandingLabel.setBounds(230, 110, 200, 30);
-
-        serviceTableModel = new DefaultTableModel();
-        serviceTableModel.addColumn("Service");
-        serviceTableModel.addColumn("Resolved");
-        serviceTableModel.addColumn("Outstanding");
+        setLayout(new FlowLayout());
+        getContentPane().setBackground(Color.WHITE); // Set background color to white
 
         // Placeholder data for services, resolved, and outstanding complaints
         Vector<String> serviceData1 = new Vector<>();
@@ -49,18 +33,23 @@ public class RepresentativeGUI extends JFrame {
         serviceData2.add("Cable TV");
         serviceData2.add("5");
         serviceData2.add("3");
+        
+        Vector<String> serviceData3 = new Vector<>();
+        serviceData3.add("Login Issues");
+        serviceData3.add("5");
+        serviceData3.add("3");
+        
+        Vector<String> serviceData4 = new Vector<>();
+        serviceData3.add("Installation issue");
+        serviceData3.add("5");
+        serviceData3.add("3");
 
+        serviceTableModel = new DefaultTableModel();
+        serviceTableModel.addColumn("Service");
+        serviceTableModel.addColumn("Resolved");
+        serviceTableModel.addColumn("Outstanding");
         serviceTableModel.addRow(serviceData1);
         serviceTableModel.addRow(serviceData2);
-
-        serviceTable = new JTable(serviceTableModel);
-        serviceScrollPane = new JScrollPane(serviceTable);
-        serviceScrollPane.setBounds(20, 150, 200, 100);
-
-        complaintsTableModel = new DefaultTableModel();
-        complaintsTableModel.addColumn("Customer ID");
-        complaintsTableModel.addColumn("Name");
-        complaintsTableModel.addColumn("Issue");
 
         // Placeholder data for customer complaints
         Vector<String> complaintData1 = new Vector<>();
@@ -93,29 +82,75 @@ public class RepresentativeGUI extends JFrame {
         complaintData5.add("Connectivity issues: No internet");
         complaintData5.add("2023-09-24");
 
+        complaintsTableModel = new DefaultTableModel();
+        complaintsTableModel.addColumn("Customer ID");
+        complaintsTableModel.addColumn("Name");
+        complaintsTableModel.addColumn("Issue");
+        complaintsTableModel.addColumn("Date");
         complaintsTableModel.addRow(complaintData1);
         complaintsTableModel.addRow(complaintData2);
         complaintsTableModel.addRow(complaintData3);
         complaintsTableModel.addRow(complaintData4);
         complaintsTableModel.addRow(complaintData5);
-
-        complaintsTable = new JTable(complaintsTableModel);
-        complaintsScrollPane = new JScrollPane(complaintsTable);
-        complaintsScrollPane.setBounds(20, 280, 500, 200);
     }
 
     private void addComponents() {
-        add(titleLabel);
-        add(serviceLabel);
-        add(resolvedLabel);
-        add(outstandingLabel);
-        add(serviceScrollPane);
-        add(complaintsScrollPane);
+        viewServicesButton = new JButton("View List of Services");
+        viewServicesButton.setBackground(Color.CYAN); // Set background color to sky blue
+        viewServicesButton.setPreferredSize(new Dimension(350, 50)); // Resize button
+        viewServicesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Handle the action when View List of Services button is clicked
+                String servicesInfo = getServiceInformation();
+                JOptionPane.showMessageDialog(null, servicesInfo, "List of Services", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        viewComplaintsButton = new JButton("View Customer Complaints");
+        viewComplaintsButton.setBackground(Color.CYAN); // Set background color to sky blue
+        viewComplaintsButton.setPreferredSize(new Dimension(350, 50)); // Resize button
+        viewComplaintsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Handle the action when View Customer Complaints button is clicked
+                String complaintsInfo = getCustomerComplaintsInformation();
+                JOptionPane.showMessageDialog(null, complaintsInfo, "Customer Complaints", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        add(viewServicesButton);
+        add(viewComplaintsButton);
+    }
+
+    private String getServiceInformation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Services\n");
+        sb.append("--------------------------------------------------\n");
+        for (int row = 0; row < serviceTableModel.getRowCount(); row++) {
+            sb.append("Service: ").append(serviceTableModel.getValueAt(row, 0)).append("\n");
+            sb.append("Resolved: ").append(serviceTableModel.getValueAt(row, 1)).append("\n");
+            sb.append("Outstanding: ").append(serviceTableModel.getValueAt(row, 2)).append("\n");
+            sb.append("--------------------------------------------------\n");
+        }
+        return sb.toString();
+    }
+
+    private String getCustomerComplaintsInformation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Customer Complaints\n");
+        sb.append("--------------------------------------------------\n");
+        for (int row = 0; row < complaintsTableModel.getRowCount(); row++) {
+            sb.append("Customer ID: ").append(complaintsTableModel.getValueAt(row, 0)).append("\n");
+            sb.append("Name: ").append(complaintsTableModel.getValueAt(row, 1)).append("\n");
+            sb.append("Issue: ").append(complaintsTableModel.getValueAt(row, 2)).append("\n");
+            sb.append("Date: ").append(complaintsTableModel.getValueAt(row, 3)).append("\n");
+            sb.append("--------------------------------------------------\n");
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-        	RepresentativeGUI gui = new RepresentativeGUI();
+            RepresentativeGUI gui = new RepresentativeGUI();
             gui.setVisible(true);
         });
     }
