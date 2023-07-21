@@ -10,7 +10,7 @@ import java.util.Vector;
 import model.Livechat;
 
 public class RepresentativeDashboard extends JFrame {
-    private JButton viewServicesButton, viewComplaintsButton, liveChatButton;
+    private JButton viewServicesButton, viewComplaintsButton, liveChatButton, assignTechnicianButton;
     private DefaultTableModel serviceTableModel, complaintsTableModel;
 
     public RepresentativeDashboard() {
@@ -129,10 +129,15 @@ public class RepresentativeDashboard extends JFrame {
             	
             }
         });
+        
+        assignTechnicianButton = new JButton("Assign Technician");
+        assignTechnicianButton.setBackground(Color.CYAN);
+        assignTechnicianButton.setPreferredSize(new Dimension(350, 50));
 
         add(viewServicesButton);
         add(viewComplaintsButton);
         add(liveChatButton);
+        add(assignTechnicianButton);
     }
 
     private String getServiceInformation() {
