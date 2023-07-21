@@ -1,5 +1,5 @@
 package view;
-
+import client.ClientCus;
 import javax.swing.*;
 
 import java.awt.*;
@@ -69,10 +69,17 @@ public class LogInDashboard extends JFrame {
                 String idNumber = idNumberField.getText();
                 char[] passwordChars = passwordField.getPassword();
                 String password = new String(passwordChars);
+
+                ClientCus client = new ClientCus();
+                client.sendAction("Find Customer");
+                client.sendCustomerId(password);
+                client.receiveResponse();
                 
                 System.out.println("idNumber is " + idNumber + "\nPassword is " + password);
 
                 //WILL NEED TO CHANGE to send the information to the server and get password instead 
+
+
                 boolean authenticated = authenticate(idNumber, password);
 
                 if (authenticated) {
